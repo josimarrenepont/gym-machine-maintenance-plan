@@ -1,0 +1,149 @@
+[
+    {
+        "label": "analisar_dados_manutencao",
+        "importPath": "analisar_dados",
+        "description": "analisar_dados",
+        "isExtraImport": true,
+        "detail": "analisar_dados",
+        "documentation": {}
+    },
+    {
+        "label": "gerar_relatorio_preventivo",
+        "importPath": "gerar_relatorio",
+        "description": "gerar_relatorio",
+        "isExtraImport": true,
+        "detail": "gerar_relatorio",
+        "documentation": {}
+    },
+    {
+        "label": "plot_manutencoes",
+        "importPath": "plotar_dados",
+        "description": "plotar_dados",
+        "isExtraImport": true,
+        "detail": "plotar_dados",
+        "documentation": {}
+    },
+    {
+        "label": "gerar_dados_manutencao",
+        "importPath": "simular_dados",
+        "description": "simular_dados",
+        "isExtraImport": true,
+        "detail": "simular_dados",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "analisar_dados_manutencao",
+        "kind": 2,
+        "importPath": "src.analisar_dados",
+        "description": "src.analisar_dados",
+        "peekOfCode": "def analisar_dados_manutencao(df):\n    print(\"Análise das Manutenções de Máquinas\")\n    print(\"Quantidade de Manutenções por Tipo de Máquina:\")\n    print(df['Maquina'].value_counts())\n    print(\"\\nProblemas mais Comuns Identificados:\")\n    print(df['Problema Identificado'].value_counts())\n    print(\"\\nMédia de Horas de Uso Antes de Manutenção por Tipo de Máquina:\")\n    print(df.groupby('Maquina')['Horas de Uso'].mean())",
+        "detail": "src.analisar_dados",
+        "documentation": {}
+    },
+    {
+        "label": "gerar_relatorio_preventivo",
+        "kind": 2,
+        "importPath": "src.gerar_relatorio",
+        "description": "src.gerar_relatorio",
+        "peekOfCode": "def gerar_relatorio_preventivo(df):\n    relatorio = []\n    media_uso_por_maquina = df.groupby('Maquina')['Horas de Uso'].mean()\n    for maquina, media_uso in media_uso_por_maquina.items():\n        if media_uso > 300:\n            relatorio.append(f\"Sugere-se realizar manutenção preventiva na máquina {maquina}, pois ela ultrapassou as 300 horas de uso (Média: {media_uso:.2f} horas).\")\n        else:\n            relatorio.append(f\"A máquina {maquina} está dentro dos padrões normais de uso (Média: {media_uso:.2f} horas).\")\n    return relatorio",
+        "detail": "src.gerar_relatorio",
+        "documentation": {}
+    },
+    {
+        "label": "df_manutencao",
+        "kind": 5,
+        "importPath": "src.main",
+        "description": "src.main",
+        "peekOfCode": "df_manutencao = gerar_dados_manutencao(20)\nanalisar_dados_manutencao(df_manutencao)\nplot_manutencoes(df_manutencao)\nrelatorio_preventivo = gerar_relatorio_preventivo(df_manutencao)\nfor item in relatorio_preventivo:\n    print(item)",
+        "detail": "src.main",
+        "documentation": {}
+    },
+    {
+        "label": "relatorio_preventivo",
+        "kind": 5,
+        "importPath": "src.main",
+        "description": "src.main",
+        "peekOfCode": "relatorio_preventivo = gerar_relatorio_preventivo(df_manutencao)\nfor item in relatorio_preventivo:\n    print(item)",
+        "detail": "src.main",
+        "documentation": {}
+    },
+    {
+        "label": "plot_manutencoes",
+        "kind": 2,
+        "importPath": "src.plotar_dados",
+        "description": "src.plotar_dados",
+        "peekOfCode": "def plot_manutencoes(df):\n    df['Maquina'].value_counts().plot(kind='bar', title='Manutenções por Tipo de Máquina')\n    plt.xlabel('Tipo de Máquina')\n    plt.ylabel('Número de Manutenções')\n    plt.show()",
+        "detail": "src.plotar_dados",
+        "documentation": {}
+    },
+    {
+        "label": "gerar_dados_manutencao",
+        "kind": 2,
+        "importPath": "src.simular_dados",
+        "description": "src.simular_dados",
+        "peekOfCode": "def gerar_dados_manutencao(n_maquinas=10):\n    dados_manutencao = []\n    for i in range(n_maquinas):\n        maquina = random.choice(tipos_maquinas)\n        horas_uso = random.randint(50, 500)\n        problema = random.choice(problemas_comuns)\n        acao_corretiva = f\"Substituição/Reparo de {problema.split()[1]}\"\n        data_manutencao = datetime.now() - timedelta(days=random.randint(1, 180))\n        dados_manutencao.append({\n            'Maquina': maquina,",
+        "detail": "src.simular_dados",
+        "documentation": {}
+    },
+    {
+        "label": "tipos_maquinas",
+        "kind": 5,
+        "importPath": "src.simular_dados",
+        "description": "src.simular_dados",
+        "peekOfCode": "tipos_maquinas = ['Esteira', 'Bicicleta', 'Supino', 'Puxada', 'Leg Press']\nproblemas_comuns = ['Correia gasta', 'Motor aquecendo', 'Cabos soltos', 'Ruído anormal', 'Rolamentos desgastados']\ndef gerar_dados_manutencao(n_maquinas=10):\n    dados_manutencao = []\n    for i in range(n_maquinas):\n        maquina = random.choice(tipos_maquinas)\n        horas_uso = random.randint(50, 500)\n        problema = random.choice(problemas_comuns)\n        acao_corretiva = f\"Substituição/Reparo de {problema.split()[1]}\"\n        data_manutencao = datetime.now() - timedelta(days=random.randint(1, 180))",
+        "detail": "src.simular_dados",
+        "documentation": {}
+    },
+    {
+        "label": "problemas_comuns",
+        "kind": 5,
+        "importPath": "src.simular_dados",
+        "description": "src.simular_dados",
+        "peekOfCode": "problemas_comuns = ['Correia gasta', 'Motor aquecendo', 'Cabos soltos', 'Ruído anormal', 'Rolamentos desgastados']\ndef gerar_dados_manutencao(n_maquinas=10):\n    dados_manutencao = []\n    for i in range(n_maquinas):\n        maquina = random.choice(tipos_maquinas)\n        horas_uso = random.randint(50, 500)\n        problema = random.choice(problemas_comuns)\n        acao_corretiva = f\"Substituição/Reparo de {problema.split()[1]}\"\n        data_manutencao = datetime.now() - timedelta(days=random.randint(1, 180))\n        dados_manutencao.append({",
+        "detail": "src.simular_dados",
+        "documentation": {}
+    }
+]
